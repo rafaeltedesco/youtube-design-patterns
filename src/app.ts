@@ -5,12 +5,12 @@ const server = http.createServer((req, res) => {
   switch (url) {
     case '/':
       if (method === 'GET') {
-        res.end('Hello, World!\n');
+        res.end(JSON.stringify({ message: 'Hello, World!' }));
       }
       break;
     case '/users':
       if (method === 'GET') {
-        res.end('Hello, Users!\n');
+        res.end(JSON.stringify({ message: 'Hello, Users!'}));
       } else if (method === 'POST') {
         let body = '';
         req.on('data', (chunk) => {
@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
       break;
     default:
       res.statusCode = 404;
-      res.end('Not Found\n');
+      res.end(JSON.stringify({ message: 'Not Found' }));
   }
 });
 

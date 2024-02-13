@@ -1,0 +1,17 @@
+### HELLO
+GET http://localhost:3000
+
+### USERS
+### GET Users
+GET http://localhost:3000/users
+
+### POST - Create User
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Dev Tedesco"
+}
+
+### NOT FOUND
+GET http://localhost:3000/login
