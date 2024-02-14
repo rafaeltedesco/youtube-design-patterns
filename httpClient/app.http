@@ -5,6 +5,9 @@ GET http://localhost:3000
 ### GET Users
 GET http://localhost:3000/users
 
+### GET Users Address
+GET http://localhost:3000/users/address?cep=08717380
+
 ### POST - Create User
 POST http://localhost:3000/users
 Content-Type: application/json

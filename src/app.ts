@@ -5,6 +5,7 @@ import PostUsersHandler from './handlers/PostUsersHandler';
 import PageNotFoundHandler from './handlers/PageNotFoundHandler';
 import Router from './router';
 import LogHandler from './handlers/LogHandler';
+import GetUserAddressHandler from './handlers/GetUserAddressHandler';
 
 const server = http.createServer((req, res) => {
   const handlers = [
@@ -12,6 +13,7 @@ const server = http.createServer((req, res) => {
     new HelloHandler(),
     new GetUsersHandler(),
     new PostUsersHandler(),
+    new GetUserAddressHandler(),
     new PageNotFoundHandler(),
   ]
   const router = new Router(...handlers);
