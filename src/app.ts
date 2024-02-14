@@ -1,31 +1,21 @@
 import http from 'http';
+import HelloHandler from './handlers/HelloHandler';
+import GetUsersHandler from './handlers/GetUsersHandler';
+import PostUsersHandler from './handlers/PostUsersHandler';
+import PageNotFoundHandler from './handlers/PageNotFoundHandler';
+import Router from './router';
+import LogHandler from './handlers/LogHandler';
 
 const server = http.createServer((req, res) => {
-  const { method, url } = req;
-  switch (url) {
-    case '/':
-      if (method === 'GET') {
-        res.end(JSON.stringify({ message: 'Hello, World!' }));
-      }
-      break;
-    case '/users':
-      if (method === 'GET') {
-        res.end(JSON.stringify({ message: 'Hello, Users!'}));
-      } else if (method === 'POST') {
-        let body = '';
-        req.on('data', (chunk) => {
-          body += chunk;
-        });
-        req.on('end', () => {
-          res.statusCode = 201;
-          res.end(body);
-        });
-      }
-      break;
-    default:
-      res.statusCode = 404;
-      res.end(JSON.stringify({ message: 'Not Found' }));
-  }
+  const handlers = [
+    new LogHandler(),
+    new HelloHandler(),
+    new GetUsersHandler(),
+    new PostUsersHandler(),
+    new PageNotFoundHandler(),
+  ]
+  const router = new Router(...handlers);
+  router.handleRequest(req, res);
 });
 
 server.listen(3000, () => {
