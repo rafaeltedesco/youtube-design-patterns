@@ -1,9 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import BaseHandler from './BaseHandler';
+import HttpException from '../exceptions/HttpException';
 
 export default class PostUsersHandler extends BaseHandler {
-  protected canHandle(req: IncomingMessage): boolean {
-    return req.method === 'POST' && req.url === '/users';
+  protected canHandle(req: IncomingMessage, err: HttpException): boolean {
+    return req.method === 'POST' && req.url === '/users' && !err;
   }
 
   protected handle(req: IncomingMessage, res: ServerResponse<IncomingMessage>): void {

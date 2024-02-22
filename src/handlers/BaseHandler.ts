@@ -1,4 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
+import HttpException from '../exceptions/HttpException';
 
 export default abstract class BaseHandler {
   constructor(protected nextHandler?: BaseHandler) {}
@@ -7,18 +8,17 @@ export default abstract class BaseHandler {
     this.nextHandler = nextHandler;
   }
 
-  handleRequest(req: IncomingMessage, res: ServerResponse): void {
-    if (!this.canHandle(req)) {
+  handleRequest(req: IncomingMessage, res: ServerResponse, err?: HttpException): void {
+    if (!this.canHandle(req, err)) {
       if (this.nextHandler) {
-        return this.nextHandler.handleRequest(req, res);
+        return this.nextHandler.handleRequest(req, res, err);
       }
     }
     res.setHeader('Content-Type', 'application/json');
-    return this.handle(req, res);
+    return this.handle(req, res, err);
   }
-
-  protected abstract canHandle(req: IncomingMessage): boolean;
-  protected abstract handle(req: IncomingMessage, res: ServerResponse): void;
+  protected abstract canHandle(req: IncomingMessage, err?: HttpException): boolean;
+  protected abstract handle(req: IncomingMessage, res: ServerResponse, err?: HttpException): void;
 }
 
 

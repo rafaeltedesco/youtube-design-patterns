@@ -5,15 +5,17 @@ import PostUsersHandler from './handlers/PostUsersHandler';
 import PageNotFoundHandler from './handlers/PageNotFoundHandler';
 import Router from './router';
 import LogHandler from './handlers/LogHandler';
-import GetUserAddressHandler from './handlers/GetUserAddressHandler';
+import HttpErrorHandler from './handlers/HttpErrorHandler';
+import GetGamesHandler from './handlers/GetGamesHandler';
 
 const server = http.createServer((req, res) => {
   const handlers = [
     new LogHandler(),
     new HelloHandler(),
     new GetUsersHandler(),
+    new GetGamesHandler(),
     new PostUsersHandler(),
-    new GetUserAddressHandler(),
+    new HttpErrorHandler(),
     new PageNotFoundHandler(),
   ]
   const router = new Router(...handlers);
