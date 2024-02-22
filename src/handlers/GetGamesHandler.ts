@@ -5,14 +5,18 @@ import GamesWsService from '../services/GamesWsService';
 import { AxiosError } from 'axios';
 
 export default class GetGamesHandler extends BaseHandler {
-  private gamesWs: GamesWsService = new GamesWsService();
+
+  constructor(private readonly gamesWs: GamesWsService) {
+    super();
+  }
   
   protected canHandle(req: IncomingMessage, err: HttpException): boolean {
-    return req.method === 'GET' && req.url === '/games' && !err;
+    return req.method === 'GET' && req.url!.includes('/games') && !err;
   }
 
   protected handle(req: IncomingMessage, res: ServerResponse<IncomingMessage>): void {
-    this.gamesWs.fetch('get', '/games')
+    console.log(req.url);
+    this.gamesWs.fetch('get', req.url)
       .then((result) => {
         return res.end(JSON.stringify(result));
       })

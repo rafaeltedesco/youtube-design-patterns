@@ -23,3 +23,12 @@ Chain of Responsibility is a behavioral design pattern that lets you pass reques
 
 Template Method is a behavioral design pattern that defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
 
+
+---
+
+## Pattern:
+### Proxy
+
+Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object.
+
+![refactoring.guru](https://refactoring.guru/images/patterns/content/proxy/proxy.png?id=efece4647fb11e3f7539291796327666)

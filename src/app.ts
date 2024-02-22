@@ -7,13 +7,14 @@ import Router from './router';
 import LogHandler from './handlers/LogHandler';
 import HttpErrorHandler from './handlers/HttpErrorHandler';
 import GetGamesHandler from './handlers/GetGamesHandler';
+import GamesWsService from './services/GamesWsService';
 
 const server = http.createServer((req, res) => {
   const handlers = [
     new LogHandler(),
     new HelloHandler(),
     new GetUsersHandler(),
-    new GetGamesHandler(),
+    new GetGamesHandler(new GamesWsService()),
     new PostUsersHandler(),
     new HttpErrorHandler(),
     new PageNotFoundHandler(),

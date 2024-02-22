@@ -6,12 +6,15 @@
   "scripts": {
     "start": "tsx .",
     "dev": "tsx watch .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:load": "tsx loadTests/getGames.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/autocannon": "^7.12.5",
+    "autocannon": "^7.15.0",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   },

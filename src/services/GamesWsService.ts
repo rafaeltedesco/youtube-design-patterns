@@ -10,6 +10,7 @@ export default class GamesWsService {
   }
 
   async fetch(method: 'get' | 'post', path = '/games') {
+    console.log(path);
     const { data } = await this.api[method](path);
     return data;
   }
