@@ -6,7 +6,7 @@ import { AxiosError } from 'axios';
 
 export default class GetGamesHandler extends BaseHandler {
 
-  constructor(private readonly gamesWs: GamesWsService) {
+  constructor(private readonly gamesWs: GamesWsService = new GamesWsService()) {
     super();
   }
   
@@ -15,8 +15,7 @@ export default class GetGamesHandler extends BaseHandler {
   }
 
   protected handle(req: IncomingMessage, res: ServerResponse<IncomingMessage>): void {
-    console.log(req.url);
-    this.gamesWs.fetch('get', req.url)
+    this.gamesWs.fetch('get', req.url!)
       .then((result) => {
         return res.end(JSON.stringify(result));
       })
