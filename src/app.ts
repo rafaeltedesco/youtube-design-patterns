@@ -4,7 +4,6 @@ import GetUsersHandler from './handlers/GetUsersHandler';
 import PostUsersHandler from './handlers/PostUsersHandler';
 import PageNotFoundHandler from './handlers/PageNotFoundHandler';
 import Router from './router';
-import LogHandler from './handlers/LogHandler';
 import HttpErrorHandler from './handlers/HttpErrorHandler';
 import GetGamesHandler from './handlers/GetGamesHandler';
 import GamesWsService from './services/GamesWsService';
@@ -12,7 +11,6 @@ import GamesWsService from './services/GamesWsService';
 
 const server = http.createServer((req, res) => {  
   const handlers = [
-    new LogHandler(),
     new HelloHandler(),
     new GetUsersHandler(),
     new GetGamesHandler(new GamesWsService()),
@@ -20,7 +18,7 @@ const server = http.createServer((req, res) => {
     new HttpErrorHandler(),
     new PageNotFoundHandler(),
   ]
-  const router = new Router(...handlers);  
+  const router = new Router(...handlers);    
   router.handleRequest(req, res);
 });
 

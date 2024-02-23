@@ -26,6 +26,19 @@ Template Method is a behavioral design pattern that defines the skeleton of an a
 
 ---
 
+### Proposta do vídeo
+
+Utilizar o Padrão Proxy para aumentar a performance da aplicação atual.
+
+Saíremos de uma capacidade aproximada de:
+![initial](./screenshots/initial.png)
+
+para algo em torno de:
+![improved](./screenshots/improved.png)
+
+
+---
+
 ## Pattern:
 ### Proxy
 

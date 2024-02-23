@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import BaseHandler from './BaseHandler';
 import HttpException from '../exceptions/HttpException';
-import GamesWsService from '../services/GamesWsService';
+import GamesWsService, { GamesResponse } from '../services/GamesWsService';
 import { AxiosError } from 'axios';
 
 export default class GetGamesHandler extends BaseHandler {

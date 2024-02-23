@@ -1,4 +1,18 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
+
+export type Game = {
+  id: number,
+  title: string,
+  genre: string,
+  platform: string,
+  rating: string,
+  releaseYear: number,
+  salesInMillions: string
+}
+export type PaginatedResponse = { limit: number, page: number, remainingPages? : number, totalPages?: number };
+export type GamesResponse = {
+  data: Array<Game>
+} & PaginatedResponse;
 
 export default class GamesWsService {
   
@@ -9,7 +23,7 @@ export default class GamesWsService {
     })
   }
 
-  async fetch(method: 'get' | 'post', path = '/games') {
+  async fetch(method: 'get', path = '/games'): Promise<AxiosResponse<GamesResponse>> {
     const { data } = await this.api[method](path);
     return data;
   }
