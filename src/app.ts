@@ -8,17 +8,17 @@ import HttpErrorHandler from './handlers/HttpErrorHandler';
 import GetGamesHandler from './handlers/GetGamesHandler';
 import GamesWsService from './services/GamesWsService';
 
+const handlers = [
+  new HelloHandler(),
+  new GetUsersHandler(),
+  new GetGamesHandler(new GamesWsService()),
+  new PostUsersHandler(),
+  new HttpErrorHandler(),
+  new PageNotFoundHandler(),
+]
+const router = new Router(...handlers);    
 
 const server = http.createServer((req, res) => {  
-  const handlers = [
-    new HelloHandler(),
-    new GetUsersHandler(),
-    new GetGamesHandler(new GamesWsService()),
-    new PostUsersHandler(),
-    new HttpErrorHandler(),
-    new PageNotFoundHandler(),
-  ]
-  const router = new Router(...handlers);    
   router.handleRequest(req, res);
 });
 

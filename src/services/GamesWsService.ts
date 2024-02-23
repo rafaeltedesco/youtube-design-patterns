@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 export type Game = {
   id: number,
@@ -23,7 +23,7 @@ export default class GamesWsService {
     })
   }
 
-  async fetch(method: 'get', path = '/games'): Promise<AxiosResponse<GamesResponse>> {
+  async fetch(method: 'get', path = '/games'): Promise<GamesResponse> {
     const { data } = await this.api[method](path);
     return data;
   }
