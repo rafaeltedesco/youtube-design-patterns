@@ -3,10 +3,11 @@ import BaseHandler from './BaseHandler';
 import HttpException from '../exceptions/HttpException';
 import GamesWsService, { GamesResponse } from '../services/GamesWsService';
 import { AxiosError } from 'axios';
+import { WsService } from '../services/WsService';
 
 export default class GetGamesHandler extends BaseHandler {
 
-  constructor(private readonly gamesWs: GamesWsService = new GamesWsService()) {
+  constructor(private readonly gamesWs: WsService = new GamesWsService()) {
     super();
   }
   

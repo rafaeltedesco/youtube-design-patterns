@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import BaseHandler from './BaseHandler';
 import HttpException from '../exceptions/HttpException';
 
-export default class LogHandler extends BaseHandler {
+export class LogHandler extends BaseHandler {
   protected canHandle(req: IncomingMessage): boolean {
     return true;
   }

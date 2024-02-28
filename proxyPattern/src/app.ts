@@ -7,18 +7,21 @@ import Router from './router';
 import HttpErrorHandler from './handlers/HttpErrorHandler';
 import GetGamesHandler from './handlers/GetGamesHandler';
 import GamesWsService from './services/GamesWsService';
+import { LogHandler } from './handlers/LogHandler';
+import ProxyGamesWsService from './services/ProxyGamesWsService';
  
-const server = http.createServer((req, res) => {  
+const handlers = [
+  new LogHandler(),
+  new HelloHandler(),
+  new GetUsersHandler(),
+  new GetGamesHandler(new ProxyGamesWsService()),
+  new PostUsersHandler(),
+  new HttpErrorHandler(),
+  new PageNotFoundHandler(),
+]
+const router = new Router(...handlers);   
 
-  const handlers = [
-    new HelloHandler(),
-    new GetUsersHandler(),
-    new GetGamesHandler(new GamesWsService()),
-    new PostUsersHandler(),
-    new HttpErrorHandler(),
-    new PageNotFoundHandler(),
-  ]
-  const router = new Router(...handlers);   
+const server = http.createServer((req, res) => {  
     router.handleRequest(req, res);
   });
 

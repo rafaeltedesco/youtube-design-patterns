@@ -18,7 +18,7 @@ async function getGames() {
     ],
     duration: 5,
   });
-  console.log('duration: ', result.duration, 'ms');
+  console.log('duration: ', result.duration, 's');
   console.log('requests per second in average: ', Math.round(result.requests.average));
   console.table(result.statusCodeStats);
 }
