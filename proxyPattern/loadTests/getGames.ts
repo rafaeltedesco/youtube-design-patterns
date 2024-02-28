@@ -16,7 +16,7 @@ async function getGames() {
         path: '/games?page=3&limit=10',
       }
     ],
-    duration: 5
+    duration: 5,
   });
   console.log('duration: ', result.duration, 'ms');
   console.log('requests per second in average: ', Math.round(result.requests.average));

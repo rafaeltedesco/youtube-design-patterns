@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  db:
+    container_name: db
+    image: mysql:8.1
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=yt_proxy
+    volumes:
+      - ./apiGames/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./apiGames/dbdata:/var/lib/mysql
+  redis:
+    container_name: redis
+    image: redis:6.2
+    ports:
+      - 6379:6379
